@@ -1,10 +1,11 @@
-import { Center, Heading, Image, Input, ScrollView, Text, VStack } from "native-base";
+import { Center, Heading, Image, ScrollView, Text, VStack } from "native-base";
 import BackgroundImg from '../assets/background.png';
 import { Controller, useForm } from 'react-hook-form';
 import { useState } from "react";
 import { Button } from "../components/Button";
 import { useNavigation } from "@react-navigation/native";
 import { AuthNavigatorRoutesProps } from "src/routes/auth.routes";
+import { Input } from "../components/Input";
 
 type FormData = {
     email: string;
@@ -43,9 +44,6 @@ export function SignIn() {
                     <Heading color="gray.100" fontSize="xl" mb={6} fontFamily="heading">
                         Acesse a conta
                     </Heading>
-
-                    <VStack space={4} w='full'>
-
                         <Controller
                             control={control}
                             name="email"
@@ -80,7 +78,6 @@ export function SignIn() {
                             //    onPress={handleSubmit(handleSignIn)}
                             isLoading={isLoading}
                         />
-                    </VStack>
                 </Center>
                 <Center mt={24}>
                     <Text color="gray.100" fontSize="sm" mb={3} fontFamily="body">

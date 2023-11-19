@@ -1,4 +1,4 @@
-import { Center, Heading, Image, Input, ScrollView, Text, useToast, VStack } from "native-base";
+import { Center, Heading, Image, ScrollView, Text, useToast, VStack } from "native-base";
 import BackgroundImg from '../assets/background.png';
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
@@ -6,6 +6,7 @@ import * as yup from 'yup';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button } from "../components/Button";
+import { Input } from "../components/Input";
 
 type FormDataProps = {
     name: string;
@@ -18,7 +19,7 @@ const signUpSchema = yup.object({
     name: yup.string().required('Informe o nome.'),
     email: yup.string().required('Informe o e-mail').email('E-mail inválido.'),
     password: yup.string().required('Informe a senha').min(6, 'A senha deve ter pelo menos 6 dígitos.'),
-    password_confirm: yup.string().required('Confirme a senha.').oneOf([yup.ref('password'), null], 'A confirmação da senha não confere')
+    password_confirm: yup.string().required('Confirme a senha.').oneOf([yup.ref('password'), ""], 'A confirmação da senha não confere')
 });
 
 export function SignUp() {
@@ -57,8 +58,6 @@ export function SignUp() {
                     <Heading color="gray.100" fontSize="xl" mb={6} fontFamily="heading">
                         Crie sua conta
                     </Heading>
-
-                    <VStack space={4} w="full">
                         <Controller
                             control={control}
                             name="name"
@@ -122,7 +121,6 @@ export function SignUp() {
                             //   onPress={handleSubmit(handleSignUp)}
                             isLoading={isLoading}
                         />
-                    </VStack>
                 </Center>
 
                 <Button
