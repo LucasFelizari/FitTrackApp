@@ -1,8 +1,10 @@
 import { useFonts, Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/roboto';
 import { StatusBar } from 'react-native';
-import { Center, NativeBaseProvider } from 'native-base';
-import {  Text } from 'react-native';
+import { NativeBaseProvider } from 'native-base';
 import { THEME } from './src/theme';
+import { Loading } from './src/components/Loading';
+import { Routes } from './src/routes';
+
 
 
 export default function App() {
@@ -14,13 +16,7 @@ export default function App() {
         backgroundColor="transparent"
         translucent
       />
-      {
-        fontsLoaded ?
-        <Center flex={1}>
-          <Text>Open up App.js to start working on your app!</Text>
-        </Center>
-          : <></>
-      }
+      {fontsLoaded ? <Routes /> : <Loading />}
     </NativeBaseProvider>
   );
 }

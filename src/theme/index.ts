@@ -7,8 +7,8 @@ export const THEME = extendTheme({
       500: '#00B37E',
     },
     blue: {
-        700: '#0061FF',
-        500: '#0065FF',
+      700: '#0061FF',
+      500: '#0065FF',
     },
     gray: {
       700: '#121214',
@@ -22,7 +22,8 @@ export const THEME = extendTheme({
     white: '#FFFFFF',
     red: {
       500: '#F75A68'
-    }
+    },
+    bg: '#121214',
   },
   fonts: {
     heading: 'Roboto_700Bold',
