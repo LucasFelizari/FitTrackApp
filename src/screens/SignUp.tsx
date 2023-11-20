@@ -7,6 +7,9 @@ import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button } from "../components/Button";
 import { Input } from "../components/Input";
+import { api } from "../services/api";
+import { useAuth } from "../hooks/useAuth";
+import { AppError } from "../utils/AppError";
 
 type FormDataProps = {
     name: string;
@@ -25,6 +28,7 @@ const signUpSchema = yup.object({
 export function SignUp() {
     const [isLoading, setIsLoading] = useState(false);
     const toast = useToast();
+    const { singIn } = useAuth();
 
     const { control, handleSubmit, formState: { errors } } = useForm<FormDataProps>({
         resolver: yupResolver(signUpSchema),
@@ -35,6 +39,27 @@ export function SignUp() {
     function handleGoBack() {
         navigation.goBack();
     }
+
+    async function handleSignUp({ name, email, password }: FormDataProps) {
+        try {
+          setIsLoading(true)
+    
+          await api.post('/users', { name, email, password });
+          await singIn(email, password)
+        } catch (error) {
+          setIsLoading(false);
+    
+          const isAppError = error instanceof AppError;
+    
+          const title = isAppError ? error.message : 'Não foi possível criar a conta. Tente novamente mais tarde';
+    
+          toast.show({
+            title,
+            placement: 'top',
+            bgColor: 'red.500'
+          })
+        }
+      }
 
     return (
         <ScrollView contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false}>
@@ -109,7 +134,7 @@ export function SignUp() {
                                     secureTextEntry
                                     onChangeText={onChange}
                                     value={value}
-                                    // onSubmitEditing={handleSubmit(handleSignUp)}
+                                    onSubmitEditing={handleSubmit(handleSignUp)}
                                     returnKeyType="send"
                                     errorMessage={errors.password_confirm?.message}
                                 />
@@ -118,7 +143,7 @@ export function SignUp() {
 
                         <Button
                             title="Criar e acessar"
-                            //   onPress={handleSubmit(handleSignUp)}
+                            onPress={handleSubmit(handleSignUp)}
                             isLoading={isLoading}
                         />
                 </Center>
