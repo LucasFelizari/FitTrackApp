@@ -3,9 +3,16 @@ import { useTheme } from "native-base";
 import { Home } from '../screens/Home';
 import HomeSvg from '../assets/home.svg';
 import { Platform } from "react-native";
+import { History } from "../screens/History";
+import HistorySvg from "../assets/history.svg";
+import { Exercise } from "../screens/Exercise";
 
 type AppRoutes = {
     home: undefined;
+    exercise: {
+        exerciseId: string;
+    };
+    history: undefined;
 }
 
 export type AppNavigatorRoutesProps = BottomTabNavigationProp<AppRoutes>;
@@ -37,6 +44,22 @@ export function AppRoutes() {
                     tabBarIcon: ({ color, }) => (
                         <HomeSvg fill={color} width={iconSize} height={iconSize} />
                     )
+                }}
+            />
+            <Screen
+                name="history"
+                component={History}
+                options={{
+                    tabBarIcon: ({ color }) => (
+                        <HistorySvg fill={color} width={iconSize} height={iconSize} />
+                    )
+                }}
+            />
+            <Screen
+                name="exercise"
+                component={Exercise}
+                options={{
+                    tabBarButton: () => null
                 }}
             />
         </Navigator>
