@@ -19,7 +19,7 @@ export function SignIn() {
     const navigation = useNavigation<AuthNavigatorRoutesProps>();
     const { control, handleSubmit, formState: { errors } } = useForm<FormData>()
     const toast = useToast();
-    const { singIn } = useAuth();
+    const { signIn } = useAuth();
 
     function handleNewAccount() {
         navigation.navigate('signUp');
@@ -28,7 +28,7 @@ export function SignIn() {
     async function handleSignIn({ email, password }: FormData) {
         try {
             setIsLoading(true);
-            await singIn(email, password);
+            await signIn(email, password);
 
         } catch (error) {
             const isAppError = error instanceof AppError;

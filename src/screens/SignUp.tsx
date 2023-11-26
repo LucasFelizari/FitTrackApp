@@ -28,7 +28,7 @@ const signUpSchema = yup.object({
 export function SignUp() {
     const [isLoading, setIsLoading] = useState(false);
     const toast = useToast();
-    const { singIn } = useAuth();
+    const { signIn } = useAuth();
 
     const { control, handleSubmit, formState: { errors } } = useForm<FormDataProps>({
         resolver: yupResolver(signUpSchema),
@@ -42,15 +42,14 @@ export function SignUp() {
 
     async function handleSignUp({ name, email, password }: FormDataProps) {
         try {
-          setIsLoading(true)
-    
+          setIsLoading(true);
           await api.post('/users', { name, email, password });
-          await singIn(email, password)
+          await signIn(email, password)
         } catch (error) {
           setIsLoading(false);
     
           const isAppError = error instanceof AppError;
-    
+            
           const title = isAppError ? error.message : 'Não foi possível criar a conta. Tente novamente mais tarde';
     
           toast.show({
