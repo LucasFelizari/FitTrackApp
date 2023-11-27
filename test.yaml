@@ -1,0 +1,18 @@
+appId: com.fittrack.app
+
+- openLink: exp://127.0.0.1:8081
+
+- tapOn:
+    id: email-input
+- inputText: "teste@email.com"
+
+- tapOn:
+    id: password-input
+- inputText: "123456"
+- hideKeyboard
+
+- tapOn:
+    id: submit-button
+
+- assertVisible: "Olá,"
+

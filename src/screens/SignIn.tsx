@@ -84,6 +84,7 @@ export function SignIn() {
                                 autoCapitalize="none"
                                 onChangeText={onChange}
                                 errorMessage={errors.email?.message}
+                                testID="email-input"
                             />
                         )}
                     />
@@ -98,6 +99,7 @@ export function SignIn() {
                                 secureTextEntry
                                 onChangeText={onChange}
                                 errorMessage={errors.password?.message}
+                                testID="password-input"
                             />
                         )}
                     />
@@ -106,6 +108,7 @@ export function SignIn() {
                         title="Acessar"
                         onPress={handleSubmit(handleSignIn)}
                         isLoading={isLoading}
+                        testID="submit-button"
                     />
                 </Center>
                 <Center mt={24}>
