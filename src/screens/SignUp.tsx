@@ -73,9 +73,9 @@ export function SignUp() {
 
                 <Center my={24}>
                     {/* <LogoSvg /> */}
-                    <Text color="gray.100" fontSize="sm">
+                    {/* <Text color="gray.100" fontSize="sm">
                         Treine sua mente e o seu corpo.
-                    </Text>
+                    </Text> */}
                 </Center>
 
                 <Center>
